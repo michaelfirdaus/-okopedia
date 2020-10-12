@@ -24,12 +24,12 @@
                         </td>
                         <td>
                             <a href="{{ route('category.edit', ['id' => $category ->id]) }}" class="btn btn-xs btn-info">
-                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="fas fa-pencil-alt"></span>
                             </a>
                         </td>
                         <td>
                             <a href="{{ route('category.delete', ['id' => $category ->id]) }}" class="btn btn-xs btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="fas fa-trash-alt"></span>
                             </a>
                         </td>
                     </tr>

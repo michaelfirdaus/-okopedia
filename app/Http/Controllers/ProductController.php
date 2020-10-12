@@ -25,6 +25,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
+
+        if($categories->count() == 0){
+            return redirect()->back();
+        }
+
         return view('admin.products.create')->with('categories', Category::all());
     }
 
@@ -64,7 +70,7 @@ class ProductController extends Controller
             'product_desc' => $request->product_desc
         ]);
 
-            
+        Session::flash('success', 'Successfully created a product.');
 
         return redirect()->route('products');
     }
@@ -113,6 +119,8 @@ class ProductController extends Controller
 
         $product->save();
 
+        Session::flash('success', 'Product updated successfully.');
+
         return redirect()->route('products');
     }
 
@@ -127,6 +135,8 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $product->delete();
+
+        Session::flash('success', 'Product has been deleted.');
 
         return redirect()->route('products');
     }
