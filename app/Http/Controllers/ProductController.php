@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
@@ -28,10 +29,11 @@ class ProductController extends Controller
         $categories = Category::all();
 
         if($categories->count() == 0){
+            Session::flash('info', 'You must have a category before attempting to create a new product.');
             return redirect()->back();
         }
 
-        return view('admin.products.create')->with('categories', Category::all());
+        return view('admin.products.create')->with('categories', $categories);
     }
 
     /**
@@ -95,8 +97,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        $categories = Category::all();
 
-        return view('admin.products.edit')->with('product', $product);
+        return view('admin.products.edit')->with('product', $product)->with('categories', $categories);
     }
 
     /**

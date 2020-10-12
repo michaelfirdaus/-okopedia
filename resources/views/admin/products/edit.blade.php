@@ -7,23 +7,27 @@
 
     <div class="card">
         <div class="card-header">
-            Update Product : {{ $product->name }}
+            Update Product : {{ $product->product_name }}
         </div>
 
         <div class="card-body">
             <form action="{{ route('product.update', ['id' => $product->id]) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="name">Product Image</label>
-                    <input type="file" name="name" value="{{ $product->product_image }}" class="form-control">
+                    <label for="product_image">Product Image</label>
+                    <input type="file" name="product_image" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="name">Product Name</label>
-                    <input type="text" name="name" value="{{ $product->product_name }}" class="form-control">
+                    <label for="product_name">Product Name</label>
+                    <input type="text" name="product_name" value="{{ $product->product_name }}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="name">Product Category</label>
-                    <input type="text" name="name" value="{{ $product->product_category }}" class="form-control">
+                    <label for="product_category">Product Category</label>
+                    <select name="product_category" id="category" class="form-control">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="name">Product Price</label>
@@ -31,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Product Description</label>
-                    <input type="text" name="name" value="{{ $product->product_description }}" class="form-control">
+                    <input type="text" name="name" value="{{ $product->product_desc }}" class="form-control">
                 </div>
 
                 <div class="form-group">
