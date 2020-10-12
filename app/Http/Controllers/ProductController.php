@@ -112,9 +112,27 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
+
+        $this->validate($request, [
+            'product_name' => 'required',
+            'product_category' => 'required',
+            'product_price' => 'required',
+            'product_desc' => 'required'
+        ]);
+
+        if($request->hasFile('product_image')){
+            $image = $request->file('product_image');
+
+            $fullImage = time().'.'.$image->getClientOriginalExtension();
+    
+            $path = public_path('/uploads/product_img/');
+    
+            $image->move($path, $fullImage);
+
+            $product->product_image = $fullImage;
+        }
        
         $product->id = $request->id;
-        $product->product_image = $request->product_image;
         $product->product_name = $request->product_name;
         $product->product_category = $request->product_category;
         $product->product_price = $request->product_price;

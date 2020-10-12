@@ -23,19 +23,19 @@
                 </div>
                 <div class="form-group">
                     <label for="product_category">Product Category</label>
-                    <select name="product_category" id="category" class="form-control">
+                    <select name="product_category" id="product_category" class="form-control">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="name">Product Price</label>
-                    <input type="text" name="name" value="{{ $product->product_price }}" class="form-control">
+                    <label for="product_price">Product Price</label>
+                    <input type="text" name="product_price" value="{{ $product->product_price }}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="name">Product Description</label>
-                    <input type="text" name="name" value="{{ $product->product_desc }}" class="form-control">
+                    <label for="product_desc">Product Description</label>
+                    <input type="text" name="product_desc" value="{{ $product->product_desc }}" class="form-control">
                 </div>
 
                 <div class="form-group">
