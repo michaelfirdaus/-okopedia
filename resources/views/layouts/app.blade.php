@@ -30,7 +30,19 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     $okopedia
                 </a>
-                <div class="container" style ="size=40">@yield('searchbox')</div>
+                <div class="container" style ="size=40">
+                    <form action="/search" method="POST" role="search" class="d-flex justify-content-end">
+                        {{ csrf_field() }}
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="q"
+                                placeholder="Search anything..." size="40"> <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="fas fa-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

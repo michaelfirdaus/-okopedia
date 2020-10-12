@@ -24,7 +24,7 @@
             </div>
         @endif
 
-        {{ __('Welcome!') }}
+        Welcome, {{ $users->name }}!
     </div>
 </div>
 @endsection

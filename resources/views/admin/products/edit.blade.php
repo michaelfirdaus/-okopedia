@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label for="product_price">Product Price</label>
-                    <input type="text" name="product_price" value="{{ $product->product_price }}" class="form-control">
+                    <input type="number" name="product_price" value="{{ $product->product_price }}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="product_desc">Product Description</label>
