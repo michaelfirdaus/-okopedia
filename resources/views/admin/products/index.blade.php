@@ -32,38 +32,44 @@
             </thead>
     
             <tbody>
-                @foreach ($products as $product)
+                @if($products->count() > 0)
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>
+                                {{ $product->id }}
+                            </td>
+                            <td>
+                                <img src="{{ asset('uploads/product_img/'.$product->product_image) }}" width="100">
+                            </td>
+                            <td>
+                                {{ $product->product_name }}
+                            </td>
+                            <td>
+                                {{ $product->category->name }}
+                            </td>
+                            <td>
+                                {{ $product->product_price }}
+                            </td>
+                            <td>
+                                {{ $product->product_desc }}
+                            </td>
+                            <td>
+                                <a href="{{ route('product.edit', ['id' => $product ->id]) }}" class="btn btn-xs btn-info">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('product.delete', ['id' => $product ->id]) }}" class="btn btn-xs btn-danger">
+                                    <span class="fas fa-trash"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>
-                            {{ $product->id }}
-                        </td>
-                        <td>
-                            <img src="{{ asset('uploads/product_img/'.$product->product_image) }}" width="100">
-                        </td>
-                        <td>
-                            {{ $product->product_name }}
-                        </td>
-                        <td>
-                            {{ $product->category->name }}
-                        </td>
-                        <td>
-                            {{ $product->product_price }}
-                        </td>
-                        <td>
-                            {{ $product->product_desc }}
-                        </td>
-                        <td>
-                            <a href="{{ route('product.edit', ['id' => $product ->id]) }}" class="btn btn-xs btn-info">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('product.delete', ['id' => $product ->id]) }}" class="btn btn-xs btn-danger">
-                                <span class="fas fa-trash"></span>
-                            </a>
-                        </td>
+                        <th colspan="8" class="text-center">No data available, try add some new product.</td>
                     </tr>
-                @endforeach
+                @endif
             </tbody>
     
         </table>
