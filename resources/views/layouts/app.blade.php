@@ -90,35 +90,52 @@
         </nav>
 
         @if(Auth::check())
-            <div class="container">
-                <div class="row mt-4">
-                    <div class="col-lg-4">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="{{ route('home') }}">Home</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('category.create') }}">Add New Category</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('categories') }}">View All Category</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('product.create') }}">Add New Product</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{ route('products') }}">View All Product</a>
-                            </li>
-                            {{-- <li class="list-group-item">
-                                <a href="{{ route('product.view') }}">View All Product</a>
-                            </li> --}}
-                        </ul>
-                    </div>
-                    <div class="col-lg-8">
-                        @yield('content')
+            @if(Auth::user()->admin)
+                <div class="container">
+                    <div class="row mt-4">
+                        <div class="col-lg-4">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="{{ route('home') }}">Home</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{ route('user.profile') }}">My Profile</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{ route('category.create') }}">Add New Category</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{ route('categories') }}">View All Categories</a>
+                                </li>              
+                                <li class="list-group-item">
+                                    <a href="{{ route('product.create') }}">Add New Product</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{ route('products') }}">View All Products</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-8">
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="container">
+                    <div class="row mt-4">
+                        <div class="col-lg-4">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="{{ route('user.profile') }}">My Profile</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-8">
+                            @yield('content')
+                        </div>
+                    </div>
+                </div>
+            @endif
         @endif
 
         @if(!Auth::check())
