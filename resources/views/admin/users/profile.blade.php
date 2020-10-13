@@ -30,6 +30,14 @@
                     <input type="file" name="avatar" class="form-control">
                 </div>
                 <div class="form-group">
+<<<<<<< HEAD
+=======
+                    <label for="about">About You</label>
+                <textarea name="about" id="about" cols="6" rows="6" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+>>>>>>> a2a41f015e4ab3f41219eff03408fdec4f4536fa
                     <div class="text-center">
                         <button type="submit" class="btn btn-success">Update Profile</button>
                     </div>
