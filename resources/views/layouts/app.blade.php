@@ -30,8 +30,8 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     $okopedia
                 </a>
-                <div class="container" style ="size=40">
-                    <form action="/search" method="POST" role="search" class="d-flex justify-content-end">
+                <div class="container float-right" style ="size=40">
+                    <form action="/search" method="POST" role="search" class="justify-content-end">
                         {{ csrf_field() }}
                         <div class="input-group">
                             <input type="text" class="form-control" name="q"
@@ -43,6 +43,13 @@
                         </div>
                     </form>
                 </div>
+                @if(Auth::check())
+                    <div class="container">
+                        <button type="submit" class="btn btn-default">
+                            <span class="fas fa-shopping-cart"></span>
+                        </button>
+                    </div>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
