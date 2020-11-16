@@ -14,5 +14,9 @@ class CategoriesTableSeeder extends Seeder
         App\Category::create([
             'name' => 'Laptop',
         ]);
+
+        App\Category::create([
+            'name' => 'Handphone',
+        ]);
     }
 }

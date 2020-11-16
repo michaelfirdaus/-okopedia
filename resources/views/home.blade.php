@@ -23,8 +23,26 @@
                 {{ session('status') }}
             </div>
         @endif
+        
+        @foreach($products as $product)
+        <div class="col-md-12">
+            <div class="card card-body col-md-7 m-3">
+                <img src="{{ url($product->product_image) }}" alt="{{ $product->product_name }}" width="312px" height="200px" class="ml-1 mx-auto d-block rounded p-0">
+                <div class="card-header m-2">
+                    {{$product->product_name}}
+                    <br>
+                    {{$product->product_price}}
+                    <br>
+                    {{$product->category->name}}
+                </div>  
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="btn btn-success">Product Detail</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        <div class="d-flex justify-content-center">{{$products->links()}}</div>
 
-        Welcome!
     </div>
 </div>
 @endsection
