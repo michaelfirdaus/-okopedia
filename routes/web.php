@@ -113,6 +113,11 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'UserController@update',
             'as' => 'user.profile.update'
         ]);
+
+        Route::get('/user/product/{id}',[
+            'uses' => 'ProductDetailController@index',
+            'as' => 'user.productdetail'
+        ]);
     });
 
 });    

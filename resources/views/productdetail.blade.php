@@ -24,10 +24,9 @@
             </div>
         @endif
         
-        @foreach($products as $product)
         <div class="col">
             <div class="card card-body m-3">
-                <img src="{{ url($product->product_image) }}" alt="{{ $product->product_name }}" width="312px" height="200px" class="ml-1 mx-auto d-block rounded p-0">
+                <img src="{{ url($product->product_image) }}" alt="{{ $product->product_name }}" width="512px" height="300px" class="ml-1 mx-auto d-block rounded p-0">
                 <div class="card-header m-2">
                     <div class="row m-1">
                         {{$product->product_name}}
@@ -35,17 +34,18 @@
                     <div class="row m-1">
                         {{$product->product_price}}
                     </div>
+                    <div class="row mt-1 ml-1 mb-1">
+                        Category : <div class= "ml-1">{{$product->category->name}}</div>
+                    </div>
                     <div class="row m-1">
-                        {{$product->category->name}}
+                        {{$product->product_desc}}
                     </div>
                 </div>  
                 <div class="d-flex justify-content-center">
-                <a href="{{ route('user.productdetail', ['id' => $product->id]) }}" class="btn btn-success">Product Detail</a>
+                    <a href="#" class="btn btn-info">Add To Cart</a>
                 </div>
             </div>
         </div>
-        @endforeach
-        <div class="d-flex justify-content-center">{{$products->links()}}</div>
 
     </div>
 </div>
