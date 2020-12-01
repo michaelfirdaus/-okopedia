@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('searchbox')
+CART BRANCH
 <form action="/search" method="POST" role="search" class="d-flex justify-content-end">
     {{ csrf_field() }}
     <div class="input-group">
