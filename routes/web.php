@@ -119,6 +119,18 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'ProductDetailController@index',
             'as' => 'user.productdetail'
         ]);
+
+        Route::get('/user/product/{id}',[
+            'uses' => 'ProductDetailController@index',
+            'as' => 'user.productdetail'
+        ]);
+
+        Route::get('/user/cart/{id}',[
+            'uses' => 'CartController@index',
+            'as' => 'user.addtocart'
+        ]);
+        
+        Route::post('/cart/store/{id}', 'CartController@store')->name('cart.store');
     });
 
 });    

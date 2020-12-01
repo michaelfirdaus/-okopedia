@@ -40,10 +40,16 @@
                     <div class="row m-1">
                         {{$product->product_desc}}
                     </div>
+                    <form action="{{ route('cart.store', ['id' => $product->id]) }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="row m-1">
+                            <input type="number" id="qty" name="qty" class="form-control">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success">Add To Cart</button>
+                        </div>
+                    </form>
                 </div>  
-                <div class="d-flex justify-content-center">
-                    <a href="#" class="btn btn-info">Add To Cart</a>
-                </div>
             </div>
         </div>
 

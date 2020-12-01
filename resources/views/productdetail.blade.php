@@ -42,7 +42,7 @@
                     </div>
                 </div>  
                 <div class="d-flex justify-content-center">
-                    <a href="#" class="btn btn-info">Add To Cart</a>
+                    <a href=" {{ route('user.addtocart', $product->id) }}" class="btn btn-info">Add To Cart</a>
                 </div>
             </div>
         </div>
