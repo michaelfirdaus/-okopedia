@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\User;
 use App\Product;
 use App\Category;
+use App\Cart;
 
 class HomeController extends Controller
 {
@@ -16,9 +18,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(3);
-        return view('home', ['users' => User::all(),
-                             'products' => $products]);
+        return view('home', [
+            'users'    => User::all(),
+            'products' => Product::paginate(3),
+            'carts'    => Cart::where('user_id', Auth::user()->id)->get()
+        ]);
     }
 
     /**

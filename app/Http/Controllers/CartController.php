@@ -16,7 +16,10 @@ class CartController extends Controller
      */
     public function index($id)
     {
-        $product = Product::where('id', $id)->with('category')->first();
+        $product = Product::where('id', $id)
+            ->with('category')
+            ->first();
+
         return view('addtocart', compact('product'));
     }
 
@@ -42,11 +45,10 @@ class CartController extends Controller
 
         if($product != null)
         {
-
             $product->update([
                 'user_id' => $request->user()->id,
                 'product_id' => $request->id,
-                'qty' => $product->qty + $request->qty
+                'qty' => (int) $product->qty + $request->qty
             ]);
         }
         else{
@@ -57,9 +59,9 @@ class CartController extends Controller
             ]);
         }
 
-        Session::flash('success', 'Successfully created a product.');
+        Session::flash('success', 'Successfully add product to cart');
 
-        return redirect()->route('products');
+        return redirect()->route('home');
     }
 
     /**
@@ -68,9 +70,13 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $carts = Cart::where('user_id', $request->user()->id)
+            ->with('product')
+            ->get();
+        
+        return view('cartlist', compact('carts'));
     }
 
     /**
@@ -104,6 +110,12 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cart = Cart::find($id);
+
+        $cart->delete();
+
+        Session::flash('success', 'Successfully remove product from cart');
+
+        return redirect()->route('home');
     }
 }
