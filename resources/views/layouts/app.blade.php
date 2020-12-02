@@ -32,11 +32,11 @@
                 </a>
                 @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register')
                     <div class="container float-right">
-                        <form action="/search" method="POST" role="search" class="justify-content-end">
+                        <form action="{{ route('user.product.search') }}" method="POST" role="search" class="justify-content-end">
                             {{ csrf_field() }}
                             <div class="input-group">
-                                <input type="text" class="form-control" name="q"
-                                    placeholder="Search anything..." size="40"> <span class="input-group-btn">
+                                <input type="text" class="form-control" name="search" id="search"
+                                    placeholder="Search product..." size="40"> <span class="input-group-btn">
                                     <button type="submit" class="btn btn-default">
                                         <span class="fas fa-search"></span>
                                     </button>

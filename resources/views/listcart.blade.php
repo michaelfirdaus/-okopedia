@@ -1,19 +1,5 @@
 @extends('layouts.app')
 
-@section('searchbox')
-<form action="/search" method="POST" role="search" class="d-flex justify-content-end">
-    {{ csrf_field() }}
-    <div class="input-group">
-        <input type="text" class="form-control" name="q"
-            placeholder="Search anything..." size="40"> <span class="input-group-btn">
-            <button type="submit" class="btn btn-default">
-                <span class="fas fa-search"></span>
-            </button>
-        </span>
-    </div>
-</form>
-@endsection
-
 @section('content')
     <div class="row">
         @foreach($carts as $cart)
@@ -41,7 +27,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
-                                    <a href="" class="btn btn-success mx-2">Edit</a>
+                                    <a href="{{ route('user.cart.edit', $cart->id) }}" class="btn btn-success mx-2">Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -49,16 +35,17 @@
                 </div>
             </div>
         @endforeach
+    </div>
 
-        @if($carts->count() > 0)
+    @if($carts->count() > 0)
+        <h4 class="my-3">Grand Total : <span class="font-weight-bold text-secondary">IDR {{ $grandtotals }}</span></h4>
         <form method="POST" action="{{ route('user.cart.checkout') }}">
             @csrf
-            <button type="submit" class="btn btn-danger mx-3">Checkout</a>
+            <button type="submit" class="btn btn-danger">Checkout</a>
         </form>
         @else
         <div class="container my-5">
             <h4 class="font-weight-bold text-danger text-center">Cart is empty...</h4>
         </div>
-        @endif
-    </div>
+    @endif
 @endsection

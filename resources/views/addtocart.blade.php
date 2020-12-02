@@ -16,7 +16,8 @@
                 <div class="my-2">
                     <h4 class="text-primary font-weight-bold my-3">{{$product->product_name}}</h4>
                     <p class="text-secondary">IDR {{$product->product_price}}</p>
-                    <p class="text-info">{{$product->category->name}}</p>
+                    <p>Category : <span class="text-primary">{{$product->category->name}}</span></p>
+                    <p>Description : {{ $product->product_desc }}</p>
                 </div>
                 
                 <form action="{{ route('user.cart.store', ['id' => $product->id]) }}" method="post">
@@ -27,7 +28,7 @@
                             <input type="number" id="qty" name="qty" placeholder="Qty" class="form-control">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success my-3">Add To Cart</button>
+                    <button type="submit" class="btn btn-primary my-3">Add To Cart</button>
                 </form>
             </div>
         </div>

@@ -18,7 +18,6 @@ class CreateCartsTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('product_id');
             $table->integer('qty');
-            $table->boolean('paid')->default(false);
             $table->timestamps();
         });
     }

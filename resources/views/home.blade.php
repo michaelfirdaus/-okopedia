@@ -18,10 +18,10 @@
                             <img src="{{ url($product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail" width="300">
                             <div class="my-2">
                                 <h4 class="text-primary font-weight-bold my-3">{{$product->product_name}}</h4>
-                                <p class="text-secondary">{{$product->product_price}}</p>
+                                <p class="text-secondary">IDR {{$product->product_price}}</p>
                                 <p class="text-info">{{$product->category->name}}</p>
                             </div>
-                            <a href="{{ route('user.productdetail', ['id' => $product->id]) }}" class="btn btn-success">Product Detail</a>
+                            <a href="{{ route('user.product.detail', ['id' => $product->id]) }}" class="btn btn-success">Product Detail</a>
                         </div>
                     </div>
                 @endforeach
@@ -41,7 +41,7 @@
                             <p class="text-secondary">IDR {{$product->product_price}}</p>
                             <p class="text-info">{{$product->category->name}}</p>
                         </div>
-                        <a href="{{ route('user.productdetail', ['id' => $product->id]) }}" class="btn btn-success">Product Detail</a>
+                        <a href="{{ route('user.product.detail', ['id' => $product->id]) }}" class="btn btn-success">Product Detail</a>
                     </div>
                 </div>
             @endforeach
