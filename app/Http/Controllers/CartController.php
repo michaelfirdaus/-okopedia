@@ -10,27 +10,17 @@ use Session;
 class CartController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($id)
-    {
-        $product = Product::where('id', $id)
-            ->with('category')
-            ->first();
-
-        return view('addtocart', compact('product'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $product = Product::where('id', $id)
+        ->with('category')
+        ->first();
+
+        return view('addtocart', compact('product'));
     }
 
     /**
@@ -76,7 +66,7 @@ class CartController extends Controller
             ->with('product')
             ->get();
         
-        return view('cartlist', compact('carts'));
+        return view('listcart', compact('carts'));
     }
 
     /**

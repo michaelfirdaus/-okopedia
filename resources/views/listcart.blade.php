@@ -29,20 +29,20 @@
                                     {{ $cart->product->product_name }}
                                 </h5>
                                 <p class="card-text text-secondary">
-                                    Price : <span class="font-weight-bold">{{ $cart->product->product_price }}</span>
+                                    Price : <span class="font-weight-bold">IDR {{ $cart->product->product_price }}</span>
                                 </p>
-                                <p class="card-text">
-                                    <small class="text-muted">
-                                        Quantity : {{ $cart->qty }}
-                                    </small>
-                                </p>
-                                <form method="POST" action="{{ route('cart.destroy', $cart->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</a>
-                                </form>
-
-                                {{-- <a href="" class="btn btn-success">Edit</a> --}}
+                                <small class="text-muted">
+                                    Quantity : {{ $cart->qty }}
+                                </small>
+                                <h5 class="font-weight-bold my-3 text-secondary">Total Price : IDR {{ ($cart->qty * $cart->product->product_price) }}</h5>
+                                <div class="row d-flex justify-content-end">
+                                    <form method="POST" action="{{ route('user.cart.destroy', $cart->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    <a href="" class="btn btn-success mx-2">Edit</a>
+                                </div>
                             </div>
                         </div>
                     </div>
