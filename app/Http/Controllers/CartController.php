@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
+use App\History;
+use App\DetailHistory;
 use Session;
 
 class CartController extends Controller
@@ -105,6 +107,39 @@ class CartController extends Controller
         $cart->delete();
 
         Session::flash('success', 'Successfully remove product from cart');
+
+        return redirect()->route('home');
+    }
+
+    public function checkout(Request $request)
+    {
+        $carts = Cart::where('user_id', $request->user()->id)->with('product')->get();
+
+        $total = 0;
+
+        foreach($carts as $cart)
+        {
+            $total += (int) $cart->product->product_price * $cart->qty;
+        }
+
+        $history = History::create([
+            'user_id' => $request->user()->id,
+            'total'   => $total
+        ]);
+
+        foreach($carts as $cart)
+        {
+            DetailHistory::create([
+                'history_id' => $history->id,
+                'product_id' => $cart->product->id,
+                'qty'        => $cart->qty,
+                'total'      => (int) $cart->qty * $cart->product->product_price
+            ]);
+
+            $cart->delete();
+        }
+
+        Session::flash('success', 'Transaction success');
 
         return redirect()->route('home');
     }

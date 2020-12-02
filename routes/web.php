@@ -142,6 +142,21 @@ Route::group(['middleware' => 'auth'], function() {
             'uses' => 'CartController@destroy',
             'as'   => 'user.cart.destroy'
         ]);
+
+        Route::post('/cart/checkout', [
+            'uses' => 'CartController@checkout',
+            'as'   => 'user.cart.checkout'
+        ]);
+
+        Route::get('/transaction/history',[
+            'uses' => 'HistoryController@index',
+            'as'   => 'user.transaction.history'
+        ]);
+
+        Route::get('/transaction/history/{id}/detail',[
+            'uses' => 'HistoryController@detail',
+            'as'   => 'user.transaction.history.detail'
+        ]);
     });
 });    
 

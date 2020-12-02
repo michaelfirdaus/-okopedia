@@ -51,7 +51,14 @@
         @endforeach
 
         @if($carts->count() > 0)
-            <a href="" class="btn btn-danger mx-3">Checkout</a>
+        <form method="POST" action="{{ route('user.cart.checkout') }}">
+            @csrf
+            <button type="submit" class="btn btn-danger mx-3">Checkout</a>
+        </form>
+        @else
+        <div class="container my-5">
+            <h4 class="font-weight-bold text-danger text-center">Cart is empty...</h4>
+        </div>
         @endif
     </div>
 @endsection

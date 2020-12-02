@@ -55,7 +55,7 @@
                                 </span>
                             </a>
 
-                            <a href="{{ route('user.cart.show') }}" class="btn btn-success">
+                            <a href="{{ route('user.transaction.history') }}" class="btn btn-success">
                                 <i class="fas fa-history"></i> History
                             </a>
                         </div>
