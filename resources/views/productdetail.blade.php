@@ -25,25 +25,14 @@
         @endif
         
         <div class="col">
-            <div class="card card-body m-3">
-                <img src="{{ url($product->product_image) }}" alt="{{ $product->product_name }}" width="512px" height="300px" class="ml-1 mx-auto d-block rounded p-0">
-                <div class="card-header m-2">
-                    <div class="row m-1">
-                        {{$product->product_name}}
-                    </div>
-                    <div class="row m-1">
-                        {{$product->product_price}}
-                    </div>
-                    <div class="row mt-1 ml-1 mb-1">
-                        Category : <div class= "ml-1">{{$product->category->name}}</div>
-                    </div>
-                    <div class="row m-1">
-                        {{$product->product_desc}}
-                    </div>
-                </div>  
-                <div class="d-flex justify-content-center">
-                    <a href=" {{ route('user.addtocart', $product->id) }}" class="btn btn-info">Add To Cart</a>
+            <div class="card card-body m-4">
+                <img src="{{ url($product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail" width="300">
+                <div class="my-2">
+                    <h4 class="text-primary font-weight-bold my-3">{{$product->product_name}}</h4>
+                    <p class="text-secondary">IDR {{$product->product_price}}</p>
+                    <p class="text-info">{{$product->category->name}}</p>
                 </div>
+                <a href="{{ route('user.cart.create', ['id' => $product->id]) }}" class="btn btn-info">Add to Cart</a>
             </div>
         </div>
 

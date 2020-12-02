@@ -27,43 +27,46 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}">
                     $okopedia
                 </a>
-                <div class="container float-right" style ="size=40">
-                    <form action="/search" method="POST" role="search" class="justify-content-end">
-                        {{ csrf_field() }}
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="q"
-                                placeholder="Search anything..." size="40"> <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default">
-                                    <span class="fas fa-search"></span>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-                @if(Auth::check())
-                    <div class="container">
-                        <a href="{{ route('cart.show') }}" class="btn btn-default">
-                            <span class="fas fa-shopping-cart">
-                                <span class="badge badge-success text-white font-weight-bold">
-                                    {{ $carts->count() > 1 ? $carts->count(). " Items" :  $carts->count()." Item"}} 
+                @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register')
+                    <div class="container float-right">
+                        <form action="/search" method="POST" role="search" class="justify-content-end">
+                            {{ csrf_field() }}
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="q"
+                                    placeholder="Search anything..." size="40"> <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">
+                                        <span class="fas fa-search"></span>
+                                    </button>
                                 </span>
-                            </span>
-                        </a>
+                            </div>
+                        </form>
                     </div>
                 @endif
+                @if(Auth::check())
+                    <div class="container d-flex justify-content-end">
+                        <div class="my-3">
+                            <a href="{{ route('user.cart.show') }}" class="btn btn-default mx-3">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge badge-success text-white font-weight-bold">
+                                    {{ $carts->count() > 1 ? $carts->count(). " Items" :  $carts->count()." Item"}}
+                                </span>
+                            </a>
+
+                            <a href="{{ route('user.transaction.history') }}" class="btn btn-success">
+                                <i class="fas fa-history"></i> History
+                            </a>
+                        </div>
+                    </div>
+                @endif
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -84,8 +87,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

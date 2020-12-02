@@ -17,4 +17,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Cart');
     }
+
+    public function histories()
+    {
+        return $this->hasMany('App\DetailHistory');
+    }
 }

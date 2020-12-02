@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view)
         {
-            $carts = Cart::where('user_id', Auth::user()->id)->get();
-
+            $carts = Auth::user() != null ? Cart::where('user_id', Auth::user()->id)->get() : null;
+            
             $view->with('carts', $carts);
         });
     }
