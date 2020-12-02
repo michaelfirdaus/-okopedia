@@ -20,9 +20,9 @@ Route::get('/', [
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function() {
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
+    Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         
         Route::get('/home', [
             'uses' => 'HomeController@index',
@@ -130,7 +130,9 @@ Route::group(['middleware' => 'auth'], function(){
             'as' => 'user.addtocart'
         ]);
         
+        Route::get('/cart/show', 'CartController@show')->name('cart.show');
         Route::post('/cart/store/{id}', 'CartController@store')->name('cart.store');
+        Route::delete('/cart/destroy/{id}', 'CartController@destroy')->name('cart.destroy');
     });
 
 });    

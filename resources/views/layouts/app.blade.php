@@ -45,9 +45,13 @@
                 </div>
                 @if(Auth::check())
                     <div class="container">
-                        <button type="submit" class="btn btn-default">
-                            <span class="fas fa-shopping-cart"></span>
-                        </button>
+                        <a href="{{ route('cart.show') }}" class="btn btn-default">
+                            <span class="fas fa-shopping-cart">
+                                <span class="badge badge-success text-white font-weight-bold">
+                                    {{ $carts->count() > 1 ? $carts->count(). " Items" :  $carts->count()." Item"}} 
+                                </span>
+                            </span>
+                        </a>
                     </div>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
