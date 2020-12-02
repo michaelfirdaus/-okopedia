@@ -108,19 +108,24 @@ Route::group(['middleware' => 'auth'], function() {
             'as'   => 'home'
         ]);
     
-        Route::get('/user/profile',[
+        Route::get('/profile',[
             'uses' => 'UserController@index',
             'as'   => 'user.profile'
         ]);
     
-        Route::post('/user/profile/update/{id}',[
+        Route::post('/profile/update/{id}',[
             'uses' => 'UserController@update',
             'as'   => 'user.profile.update'
         ]);
 
-        Route::get('/user/product/{id}',[
+        Route::get('/product/{id}',[
             'uses' => 'ProductDetailController@index',
-            'as'   => 'user.productdetail'
+            'as'   => 'user.product.detail'
+        ]);
+
+        Route::post('/product/search',[
+            'uses' => 'ProductDetailController@search',
+            'as'   => 'user.product.search'
         ]);
 
         Route::get('/product/{id}/add',[
@@ -136,6 +141,16 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/cart/store/{id}', [
             'uses' => 'CartController@store',
             'as'   => 'user.cart.store'
+        ]);
+
+        Route::get('/cart/edit/{id}', [
+            'uses' => 'CartController@edit',
+            'as'   => 'user.cart.edit'
+        ]);
+
+        Route::post('/cart/update/{id}', [
+            'uses' => 'CartController@update',
+            'as'   => 'user.cart.update'
         ]);
 
         Route::delete('/cart/destroy/{id}', [

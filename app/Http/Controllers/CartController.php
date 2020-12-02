@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Product;
 use App\Cart;
 use App\History;
 use App\DetailHistory;
-use Session;
 
 class CartController extends Controller
 {
@@ -67,8 +67,15 @@ class CartController extends Controller
         $carts = Cart::where('user_id', $request->user()->id)
             ->with('product')
             ->get();
+
+        $grandtotals = 0;
+
+        foreach($carts as $cart)
+        {
+            $grandtotals += $cart->qty * $cart->product->product_price;
+        }
         
-        return view('listcart', compact('carts'));
+        return view('listcart', compact('carts','grandtotals'));
     }
 
     /**
@@ -79,7 +86,9 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cart = Cart::where('id', $id)->with('product')->first();
+
+        return view('editcart', compact('cart'));
     }
 
     /**
@@ -91,7 +100,15 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cart = Cart::find($id);
+
+        $cart->update([
+            'qty' => $request->qty
+        ]);
+
+        Session::flash('success', 'Successfully update product quantity');
+
+        return redirect()->route('home');
     }
 
     /**
