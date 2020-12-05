@@ -106,7 +106,7 @@ class CartController extends Controller
             'qty' => $request->qty
         ]);
 
-        Session::flash('success', 'Successfully update product quantity');
+        Session::flash('success', 'Successfully updated product quantity');
 
         return redirect()->route('home');
     }
@@ -123,7 +123,7 @@ class CartController extends Controller
 
         $cart->delete();
 
-        Session::flash('success', 'Successfully remove product from cart');
+        Session::flash('success', 'Successfully removed product from cart');
 
         return redirect()->route('home');
     }
@@ -156,7 +156,7 @@ class CartController extends Controller
             $cart->delete();
         }
 
-        Session::flash('success', 'Transaction success');
+        Session::flash('success', 'Successfully processed the transaction');
 
         return redirect()->route('home');
     }
