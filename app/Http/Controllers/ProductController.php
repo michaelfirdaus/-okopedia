@@ -36,7 +36,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
 
-        if($categories->count() == 0){
+        if($categories->count() == 0)
+        {
             Session::flash('info', 'You must have a category before attempting to create a new product.');
             return redirect()->back();
         }
@@ -54,11 +55,11 @@ class ProductController extends Controller
     {
         //dd($request);
         $this->validate($request, [
-            'product_name' => 'required|unique:products',
+            'product_name'     => 'required|unique:products',
             'product_category' => 'required',
-            'product_desc' => 'required',
-            'product_price' => 'required|numeric',
-            'product_image' => 'required|image|max:10240'
+            'product_desc'     => 'required',
+            'product_price'    => 'required|numeric',
+            'product_image'    => 'required|image|max:10240'
         ]);
 
         $image = $request->file('product_image');
@@ -68,19 +69,16 @@ class ProductController extends Controller
         $path = public_path('/uploads/product_img/');
 
         $image->move($path, $fullImage);
-        // $product_image = $request->product_image;
-        // $product_new_name = time().$product_image->getClientOriginalName().$request->product_name;
-        // $product_image->move('uploads/product_img', $product_new_name);
 
         $product = Product::create([
-            'product_name' => $request->product_name,
-            'product_image' => $fullImage,
+            'product_name'     => $request->product_name,
+            'product_image'    => $fullImage,
             'product_category' => $request->product_category,
-            'product_price' => $request->product_price,
-            'product_desc' => $request->product_desc
+            'product_price'    => $request->product_price,
+            'product_desc'     => $request->product_desc
         ]);
 
-        Session::flash('success', 'Successfully created a product.');
+        Session::flash('success', 'Successfully created product');
 
         return redirect()->route('products');
     }
@@ -122,10 +120,10 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $this->validate($request, [
-            'product_name' => 'required',
+            'product_name'     => 'required',
             'product_category' => 'required',
-            'product_price' => 'required',
-            'product_desc' => 'required'
+            'product_price'    => 'required',
+            'product_desc'     => 'required'
         ]);
 
         if($request->hasFile('product_image')){
@@ -140,15 +138,15 @@ class ProductController extends Controller
             $product->product_image = $fullImage;
         }
        
-        $product->id = $request->id;
-        $product->product_name = $request->product_name;
+        $product->id               = $request->id;
+        $product->product_name     = $request->product_name;
         $product->product_category = $request->product_category;
-        $product->product_price = $request->product_price;
-        $product->product_desc = $request->product_desc;
+        $product->product_price    = $request->product_price;
+        $product->product_desc     = $request->product_desc;
 
         $product->save();
 
-        Session::flash('success', 'Product updated successfully.');
+        Session::flash('success', 'Successfully updated product.');
 
         return redirect()->route('products');
     }
@@ -165,7 +163,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        Session::flash('success', 'Product has been deleted.');
+        Session::flash('success', 'Successfully deleted product');
 
         return redirect()->route('products');
     }

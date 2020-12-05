@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        Session::flash('success', 'Successfully created a category.');
+        Session::flash('success', 'Successfully created category');
 
         return redirect()->route('categories');
 
@@ -95,7 +95,7 @@ class CategoryController extends Controller
 
        $category->save();
 
-       Session::flash('success', 'Category updated successfully.');
+       Session::flash('success', 'Successfully updated category');
 
        return redirect()->route('categories');
     }
@@ -112,7 +112,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        Session::flash('success', 'Category has been deleted.');
+        Session::flash('success', 'Successfully deleted category');
 
         return redirect()->route('categories');
     }

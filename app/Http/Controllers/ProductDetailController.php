@@ -28,6 +28,9 @@ class ProductDetailController extends Controller
         {
             return redirect()->route('user.product.detail', $product->id)->with('product', $product);
         }
-        else return redirect()->route('home');
+        else {
+            return redirect()->route('home');
+            
+        }
     }
 }
