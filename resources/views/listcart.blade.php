@@ -45,7 +45,7 @@
         </form>
         @else
         <div class="container my-5">
-            <h4 class="font-weight-bold text-danger text-center">Cart is empty...</h4>
+            <h4 class="font-weight-bold text-danger text-center">Your cart is still empty. Shop now and your product will showed up here!</h4>
         </div>
     @endif
 @endsection
