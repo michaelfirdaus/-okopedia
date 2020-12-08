@@ -31,21 +31,19 @@
                     $okopedia
                 </a>
                 @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register')
-                    @if(Auth::check() && !Auth::user()->admin)    
-                        <div class="container float-right">
-                            <form action="{{ route('user.product.search') }}" method="POST" role="search" class="justify-content-end">
-                                {{ csrf_field() }}
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" id="search"
-                                        placeholder="Search product..." size="40"> <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default">
-                                            <span class="fas fa-search"></span>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                    @endif
+                    <div class="container float-right">
+                        <form action="{{ route('user.product.search') }}" method="POST" role="search" class="justify-content-end">
+                            {{ csrf_field() }}
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" id="search"
+                                    placeholder="Search product..." size="40"> <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">
+                                        <span class="fas fa-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
                 @endif
                 @if(Auth::check())
                     @if(!Auth::user()->admin)
@@ -83,27 +81,29 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
                                     </a>
-                                    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @if($user->avatar != null)
-                            <img src="{{ asset('uploads/avatars/'.$user->avatar) }}" alt="{{ $user->name }}" width=60px height=50px>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a href="{{ route('user.profile') }}" class="dropdown-item">Update My Profile</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+
+                                    </div>
+                                </li>
+                                @if($user->avatar != null)
+                                <img src="{{ asset('uploads/avatars/'.$user->avatar) }}" alt="{{ $user->name }}" width=60px height=50px>
                             @endif
-                            @endguest
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -111,16 +111,10 @@
 
         @if(Auth::check())
             @if(Auth::user()->admin)
-                <div class="container">
+                <div class="container mt-4">
                     <div class="row mt-4">
-                        <div class="col-lg-4">
+                        <div class="col-md">
                             <ul class="list-group">
-                                <li class="list-group-item">
-                                    <a href="{{ route('home') }}">Home</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{ route('user.profile') }}">My Profile</a>
-                                </li>
                                 <li class="list-group-item">
                                     <a href="{{ route('category.create') }}">Add New Category</a>
                                 </li>
@@ -131,32 +125,18 @@
                                     <a href="{{ route('product.create') }}">Add New Product</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{ route('products') }}">View All Products</a>
+                                    <a href="{{ route('products') }}">View All Products Details</a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             @yield('content')
                         </div>
                     </div>
                 </div>
             @else
                 <div class="container">
-                    <div class="row mt-4">
-                        <div class="col-lg-4">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <a href="{{ route('home') }}">Home</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{ route('user.profile') }}">My Profile</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-8">
-                            @yield('content')
-                        </div>
-                    </div>
+                    @yield('content')
                 </div>
             @endif
         @endif

@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    <div class="row card mt-4 mb-4">
+        <div class="card-header font-weight-bold">
+            Your Cart
+        </div>
         @foreach($carts as $cart)
             <div class="col-md-12">
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class=" mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-3 my-4 mx-4">
                             <img src="{{ asset('uploads/product_img/'.$cart->product->product_image) }}" alt="{{ $cart->product->product_name }}" class="card-img">
@@ -35,17 +38,17 @@
                 </div>
             </div>
         @endforeach
+        @if($carts->count() > 0)
+            <h4 class="card-footer">Grand Total : <span class="font-weight-bold text-secondary">IDR {{ $grandtotals }}</span></h4>
+            <form method="POST" action="{{ route('user.cart.checkout') }}">
+                @csrf
+                <button type="submit" class="btn btn-danger m-4">Checkout</a>
+            </form>
+            @else
+            <div class="container my-5">
+                <h4 class="font-weight-bold text-danger text-center">Your cart is still empty. Shop now and your product will showed up here!</h4>
+            </div>
+        @endif
     </div>
 
-    @if($carts->count() > 0)
-        <h4 class="my-3">Grand Total : <span class="font-weight-bold text-secondary">IDR {{ $grandtotals }}</span></h4>
-        <form method="POST" action="{{ route('user.cart.checkout') }}">
-            @csrf
-            <button type="submit" class="btn btn-danger">Checkout</a>
-        </form>
-        @else
-        <div class="container my-5">
-            <h4 class="font-weight-bold text-danger text-center">Your cart is still empty. Shop now and your product will showed up here!</h4>
-        </div>
-    @endif
 @endsection

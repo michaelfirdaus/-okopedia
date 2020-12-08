@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card">
-    <div class="card-header">Product</div>
+<div class="card mt-4 mb-4">
+    <div class="card-header font-weight-bold">Add {{$product->product_name}} To Cart</div>
     <div class="card-body">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -25,6 +25,7 @@
                     
                     <div class="row">
                         <div class="col-md-3">
+                            <span class="ml-1">Qty :</span>
                             <input type="number" id="qty" name="qty" placeholder="Qty" class="form-control">
                         </div>
                     </div>

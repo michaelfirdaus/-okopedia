@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card">
-    <div class="card-header">{{ __('Dashboard') }}</div>
+<div class="card mt-4 mb-4">
+    <div class="card-header font-weight-bold">{{$product->product_name}} Details</div>
     <div class="card-body">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
