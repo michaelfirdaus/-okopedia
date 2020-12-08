@@ -15,19 +15,25 @@ class ProductDetailController extends Controller
      */
     public function index($id)
     {
+        //Find specific product by comparing product ID and get the category too
         $product = Product::where('id', $id)->with('category')->first();
 
+        //Redirecting user to productdetail view and pass the specific product
         return view('productdetail', ['product' => $product]);
     }
 
+    //Custom function to search a product
     public function search(Request $request)
     {
+        //Find specific product by comparing the product name
         $product = Product::where('product_name', 'LIKE', '%'.$request->search.'%')->first();
 
+        //Check if the search keyword match with a product
         if($product != null)
         {
             return redirect()->route('user.product.detail', $product->id)->with('product', $product);
         }
+        //Check if the search keyword doesn't match any product
         else {
             return redirect()->route('home');
             

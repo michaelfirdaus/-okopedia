@@ -16,6 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //Redirecting user to admin/users/profile view and pass the current user's ID
         return view('admin.users.profile')->with('user', User::find(Auth::user()->id));
     }
 
@@ -71,14 +72,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Find current user's ID
         $user = User::find($id);
 
+        //Validate that name should be filled
+        //Validate that email should be filled and must be an email format
+        //Validate that password should be filled and at least 5 characters long
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'nullable|min:5',
+            'password' => 'required|min:5',
         ]);
 
+        //Check if user upload an image,
+        //saving an image by rename them and placing them on specific folder
         if($request->hasFile('avatar')){
             $image = $request->file('avatar');
 
@@ -91,6 +98,7 @@ class UserController extends Controller
             $user->product_image = $fullImage;
         }
 
+        //Encrypt user's password
         if($request->password != ''){
             $user->password = bcrypt($request->password);
         }
@@ -98,10 +106,13 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
 
+        //Update current user to the database
         $user->update();
 
+        //Notify user with pop up message
         Session::flash('success', 'Profile updated successfully.');
 
+        //Redirecting user back (recent view)
         return redirect()->back();
     }
 

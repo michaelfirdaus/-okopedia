@@ -55,9 +55,12 @@ class LoginController extends Controller
             
             Auth::login($user);
 
+            //Saving user's email cookie for 120 minutes (2 hours)
             Cookie::queue('email', $user->email, 120);
+            //Saving user's email cookie for 120 minutes (2 hours)
             Cookie::queue('password', $request->password, 120);
 
+            //Redirecting user to home route
             return redirect()->route('home');
         }
         else

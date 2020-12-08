@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    //This controller should be accessible only by authenticated user
     public function __construct(){
         $this->middleware('auth');
     }
@@ -20,6 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        //Redirecting user to admin/categories/index view with all category (listing all category)
         return view('admin.categories.index')->with('categories', Category::all());
     }
 
@@ -30,6 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        //Redirecting user to admin/categories/index view
         return view('admin.categories.create');
     }
 
@@ -41,6 +44,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        //Validation to make sure name field should be filled and the category must be unique
         $this->validate($request, [
             'name' => 'required|unique:categories',
         ]);
@@ -48,10 +52,13 @@ class CategoryController extends Controller
         $category = new Category;
 
         $category->name = $request->name;
+        //Saving current category to the database
         $category->save();
 
+        //Notify user with pop up message
         Session::flash('success', 'Successfully created category');
 
+        //Redirecting user to categories route
         return redirect()->route('categories');
 
     }
@@ -75,8 +82,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        //Find category based on category ID
         $category = Category::find($id);
 
+        //Redirecting user to admin/categories/edit view with the specific category
         return view('admin.categories.edit')->with('category', $category); 
     }
 
@@ -89,15 +98,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $category = Category::find($id);
-       
-       $category->name = $request->name;
+        //Find category based on category ID
+        $category = Category::find($id);
+        
+        $category->name = $request->name;
+        
+        //Save the category to the database
+        $category->save();
 
-       $category->save();
+        //Notify user with pop up message
+        Session::flash('success', 'Successfully updated category');
 
-       Session::flash('success', 'Successfully updated category');
-
-       return redirect()->route('categories');
+        //Redirecting user to categories route
+        return redirect()->route('categories');
     }
 
     /**
@@ -108,12 +121,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        //Find category based on category ID
         $category = Category::find($id);
 
+        //Delete category
         $category->delete();
 
+        //Notify user with pop up message
         Session::flash('success', 'Successfully deleted category');
 
+        //Redirecting user to categories route
         return redirect()->route('categories');
     }
 }

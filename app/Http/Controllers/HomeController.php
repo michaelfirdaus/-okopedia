@@ -18,6 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //Redirecting user to home view with all user's detail and all product but only showed 3 products on each page (paginate)
         return view('home', [
             'users'    => User::all(),
             'products' => Product::paginate(3),
