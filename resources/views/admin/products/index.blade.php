@@ -43,7 +43,7 @@
                                     {{ $product->id }}
                                 </td>
                                 <td>
-                                    <img src="{{ url($product->product_image) }}" width="50">
+                                    <img src="{{ asset('uploads/product_img/'.$product->product_image) }}" width="50">
                                 </td>
                                 <td>
                                     {{ $product->product_name }}
