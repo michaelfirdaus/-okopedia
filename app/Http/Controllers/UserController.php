@@ -81,7 +81,6 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:5',
         ]);
 
         //Check if user upload an image,
@@ -95,7 +94,7 @@ class UserController extends Controller
     
             $image->move($path, $fullImage);
 
-            $user->product_image = $fullImage;
+            $user->avatar = $fullImage;
         }
 
         //Encrypt user's password

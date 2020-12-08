@@ -16,7 +16,7 @@ class ProductsTableSeeder extends Seeder
             'product_category' => '1',
             'product_desc'     => 'Original Apple 100%',
             'product_price'    => 20000000,
-            'product_image'    => 'uploads/product_img/macbook.jpg'
+            'product_image'    => 'macbook.jpg'
         ]);
 
         App\Product::create([
@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
             'product_category' => '1',
             'product_desc'     =>  'ROG Strix Hero II GL504GM. Jaminan harga termurah dan garansi resmi dari ASUS.',
             'product_price'    => 21795000,
-            'product_image'    => 'uploads/product_img/asusrog.jpg'
+            'product_image'    => 'asusrog.jpg'
         ]);
 
         App\Product::create([
@@ -32,7 +32,7 @@ class ProductsTableSeeder extends Seeder
             'product_category' => '2',
             'product_desc'     => 'ASUS ROG Phone 3, RAM 12GB/128GB 5G SnapDragon 865.',
             'product_price'    => 13000000,
-            'product_image'    => 'uploads/product_img/rogphone.jpg'
+            'product_image'    => 'rogphone.jpg'
         ]);
 
         App\Product::create([
@@ -40,7 +40,7 @@ class ProductsTableSeeder extends Seeder
             'product_category' => '2',
             'product_desc'     => 'iPhone 11 Pro Max, garansi resmi iBox Indonesia dengan kapasitas memori 256GB.',
             'product_price'    => 22000000,
-            'product_image'    => 'uploads/product_img/iphone.jpg'
+            'product_image'    => 'iphone.jpg'
         ]);
 
         App\Product::create([
@@ -48,7 +48,7 @@ class ProductsTableSeeder extends Seeder
             'product_category' => '2',
             'product_desc'     => 'Samsung S10 5G SnapDragon 865, Garansi resmi dari TAM Indonesia.',
             'product_price'    => 18000000,
-            'product_image'    => 'uploads/product_img/samsungs10.jpg'
+            'product_image'    => 'samsungs10.jpg'
         ]);
     }
 }

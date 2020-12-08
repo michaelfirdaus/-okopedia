@@ -143,11 +143,10 @@ class ProductController extends Controller
         //Validate that product price should be filled and must be numeric
         //Validate that product image should be uploaded, must be an image, and max. file size is 10000KB
         $this->validate($request, [
-            'product_name'     => 'required|unique:products',
+            'product_name'     => 'required',
             'product_category' => 'required',
             'product_desc'     => 'required',
             'product_price'    => 'required|numeric',
-            'product_image'    => 'required|image|max:10240'
         ]);
 
         //Validate if user upload a new image, 
@@ -156,10 +155,11 @@ class ProductController extends Controller
             $image = $request->file('product_image');
 
             $fullImage = time().'.'.$image->getClientOriginalExtension();
-    
+            
             $path = public_path('/uploads/product_img/');
-    
+            
             $image->move($path, $fullImage);
+            
 
             $product->product_image = $fullImage;
         }
