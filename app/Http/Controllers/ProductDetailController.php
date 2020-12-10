@@ -25,14 +25,12 @@ class ProductDetailController extends Controller
     //Custom function to search a product
     public function search(Request $request)
     {
-        //Find specific product by comparing the product name
+        //Find products by comparing the product name
         $products = Product::where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(1);
-        $products->setPath('search');
-
+        
         //Check if the search keyword match with a product
-        if($products != null)
+        if($products->count() > 0)
         {
-            // return redirect()->route('home')->with('products', $products);
             return view('home', ['products' => $products]);
         }
         //Check if the search keyword doesn't match any product

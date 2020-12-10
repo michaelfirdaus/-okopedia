@@ -27,7 +27,7 @@
                         </div>
                     @endforeach
                 <div class="col-md-12">
-                    <div class="d-flex justify-content-center">{{ $products->links() }}</div>
+                    <div class="d-flex justify-content-center">{{ $products->appends(request()->except('page'))->links() }}</div>
                 </div>
           
         </div>
@@ -49,7 +49,7 @@
                         </div>
                     @endforeach
                     <div class="col-md-12">
-                        <div class="d-flex justify-content-center">{{ $products->links() }}</div>
+                        <div class="d-flex justify-content-center">{{ $products->appends(request()->except('page'))->links() }}</div>
                     </div>
                 </div>
             </div>

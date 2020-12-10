@@ -24,9 +24,4 @@ class HomeController extends Controller
             'products' => Product::paginate(3),
         ]);
     }
-
-    public function search(Request $request)
-    {
-        
-    }
 }

@@ -144,7 +144,7 @@ Route::group(['middleware' => 'auth'], function() {
         ]);
 
         //Routes to list a product that searched by user
-        Route::post('/product/search',[
+        Route::any('search',[
             'uses' => 'ProductDetailController@search',
             'as'   => 'user.product.search'
         ]);
