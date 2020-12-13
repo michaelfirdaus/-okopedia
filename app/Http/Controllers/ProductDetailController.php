@@ -26,7 +26,7 @@ class ProductDetailController extends Controller
     public function search(Request $request)
     {
         //Find products by comparing the product name
-        $products = Product::where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(1);
+        $products = Product::where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(3);
         
         //Check if the search keyword match with a product
         if($products->count() > 0)
