@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if(Auth::check())
+    @if(Auth::check() && Auth::user()->admin != 1)
         <div class="row card mt-4 mb-4">
             <div class="card-header font-weight-bold">Products</div>
                 @if (session('status'))
@@ -28,8 +28,9 @@
                 <div class="col-md-12">
                     <div class="d-flex justify-content-center">{{ $products->appends(request()->except('page'))->links() }}</div>
                 </div>
-          
         </div>
+    @elseif(Auth::check() && Auth::user()->admin == 1)
+        <h4 class="text-center font-weight-bold mt-5">Welcome {{ Auth::user()->name }}</h4>
     @else
         <div class="row card mt-4 mb-4">
             <div class="card-header font-weight-bold">Products</div>

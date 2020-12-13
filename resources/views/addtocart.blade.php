@@ -12,7 +12,7 @@
         
         <div class="col">
             <div class="card card-body m-4">
-                <img src="{{ asset('uploads/product_img/'.$product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail rounded mx-auto d-block" width="300">
+                <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail rounded mx-auto d-block" width="300">
                 <div class="my-2">
                     <h4 class="text-primary font-weight-bold my-3">{{$product->product_name}}</h4>
                     <p class="text-secondary">IDR {{$product->product_price}}</p>

@@ -12,7 +12,7 @@
         
         <div class="col">
             <div class="m-4">
-                <img src="{{ asset('uploads/product_img/'.$cart->product->product_image) }}" alt="{{ $cart->product->product_name }}" class="img-thumbnail" width="300">
+                <img src="{{ asset($cart->product->product_image) }}" alt="{{ $cart->product->product_name }}" class="img-thumbnail" width="300">
                 <div class="my-2">
                     <h4 class="text-primary font-weight-bold my-3">{{$cart->product->product_name}}</h4>
                     <p class="text-secondary">IDR {{$cart->product->product_price}}</p>
