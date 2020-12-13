@@ -15,7 +15,7 @@
                     @foreach($products as $product)
                         <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card card-body m-4">
-                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail d-flex justify-items-center align-items-center">
+                                <img src="{{ asset('uploads/product_img/'.$product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail d-flex justify-items-center align-items-center">
                                 <div class="my-2">
                                     <h4 class="text-primary font-weight-bold my-3">{{$product->product_name}}</h4>
                                     <p class="text-secondary">IDR {{$product->product_price}}</p>
@@ -38,7 +38,7 @@
                     @foreach($products as $product)
                         <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card card-body m-4">
-                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail d-flex justify-items-center align-items-center">
+                                <img src="{{ asset('uploads/product_img/'.$product->product_image) }}" alt="{{ $product->product_name }}" class="img-thumbnail d-flex justify-items-center align-items-center">
                                 <div class="my-2">
                                     <h4 class="text-primary font-weight-bold my-3">{{$product->product_name}}</h4>
                                     <p class="text-secondary">IDR {{$product->product_price}}</p>

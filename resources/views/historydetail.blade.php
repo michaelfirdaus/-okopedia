@@ -10,7 +10,7 @@
                             <div class=" mb-3" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 my-4 mx-4">
-                                        <img src="{{ url($detail->product->product_image) }}" alt="{{ $detail->product->product_name }}" class="card-img">
+                                        <img src="{{ asset('uploads/product_img/'.$detail->product->product_image) }}" alt="{{ $detail->product->product_name }}" class="card-img">
                                     </div>
                                     <div class="col-md-7">
                                         <div class="card-body">
