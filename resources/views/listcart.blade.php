@@ -45,8 +45,9 @@
                 <button type="submit" class="btn btn-danger m-4">Checkout</a>
             </form>
             @else
-            <div class="container my-5">
+            <div class="container my-5 d-flex justify-content-around">
                 <h4 class="font-weight-bold text-danger text-center">Your cart is still empty. Shop now and your product will showed up here!</h4>
+                <a href="{{ route('home') }}" class="btn btn-secondary">Back to home</a>
             </div>
         @endif
     </div>

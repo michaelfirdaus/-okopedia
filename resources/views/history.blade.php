@@ -3,8 +3,9 @@
 @section('content')
     <div class="row mt-4">
         @if($histories->count() < 1)
-            <div class="container my-5">
+            <div class="container my-5 d-flex justify-content-between">
                 <h4 class="font-weight-bold text-danger text-center">Your history is still empty. Shop now and your product history will showed up here!</h4>
+                <a href="{{ route('home') }}" class="btn btn-secondary">Back to home</a>
             </div>
         @else
             @foreach($histories as $history)

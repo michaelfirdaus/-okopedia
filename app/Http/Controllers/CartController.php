@@ -144,8 +144,8 @@ class CartController extends Controller
         //Notify user with pop up message
         Session::flash('success', 'Successfully removed product from cart');
 
-        //Redirecting user to home view
-        return redirect()->route('home');
+        //Redirecting user to cart lists
+        return redirect()->route('user.cart.show');
     }
 
     //Custom function to checkout user's cart
