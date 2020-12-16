@@ -30,7 +30,7 @@
                 <a class="navbar-brand text-success font-weight-bold" href="{{ url('/') }}">
                     $okopedia
                 </a>
-                @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register' && Auth::check() && Auth::user()->admin != 1)
+                @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register' && (!Auth::check() || Auth::check() && Auth::user()->admin != 1))
                     <div class="container float-right">
                         <form action="{{ route('user.product.search') }}" method="POST" role="search" class="justify-content-end">
                             {{ csrf_field() }}
