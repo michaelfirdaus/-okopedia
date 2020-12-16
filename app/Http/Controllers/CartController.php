@@ -120,11 +120,11 @@ class CartController extends Controller
             'qty' => $request->qty
         ]);
 
-        //Notify user with pop up message
+        //Notify user with pop up message   
         Session::flash('success', 'Successfully updated product quantity');
 
-        //Redirecting user to home view
-        return redirect()->route('home');
+        //Redirecting user to cart lists
+        return redirect()->route('user.cart.show');
     }
 
     /**
